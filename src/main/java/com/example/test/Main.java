@@ -1,7 +1,9 @@
 package com.example.test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -22,7 +24,7 @@ class Solution {
       
       //First I need to initialise all the List
       
-      int n=prerequisite.size();
+      int n=prerequisites.length;
       int [] indegree=new int[n];
       
       for(int i=0;i<n;i++){
