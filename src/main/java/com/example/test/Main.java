@@ -34,8 +34,39 @@ class Solution {
         lst.get(l[1]).append(l[0]);
         indegree[l[0]]++;
       }
+
+      
       
       //Now I need to add to the queue the courses for which there are no prereq
+      //First pass I need to add courses with no prerequisite.
+      
+      //First define a queue
+      
+      Queue<Integer> bfs=new LinkedList<>();
+      
+      for(int i=0;i<n;i++){
+        if(indegree[i]==0){
+          bfs.add(i);
+        }
+      }
+      int takenCourses=0;
+      while(!bfs.isEmpty()){
+        int e=bfs.poll();
+        takenCourses++;
+        
+        //Go through all the elm in the adj list and reduce the incourse
+        
+        for(int i:prerequisite.get(e)){
+          indegree[i]--;
+          if(indegree[i]==0){
+            bfs.offer(i);
+          }
+          
+        }
+        
+      }
+      
+      return takenCourses==numCourses;
       
       //For each course I need to maintain how many prereq are remaining.I need this for topological sorting
       
