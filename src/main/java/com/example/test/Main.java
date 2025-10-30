@@ -3,7 +3,9 @@ package com.example.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -25,15 +27,16 @@ class Solution {
       //First I need to initialise all the List
       
       int n=prerequisites.length;
-      int [] indegree=new int[n];
+      int [] indegree=new int[numCourses];
+
       
-      for(int i=0;i<n;i++){
+      for(int i=0;i<numCourses;i++){
         lst.add(i,new ArrayList<>());
       }
       
       //Here my lst is created
-      for(int [] l:lst){
-        lst.get(l[1]).append(l[0]);
+      for(int [] l:prerequisites){
+        lst.get(l[1]).add(l[0]);
         indegree[l[0]]++;
       }
 
@@ -46,9 +49,9 @@ class Solution {
       
       Queue<Integer> bfs=new LinkedList<>();
       
-      for(int i=0;i<n;i++){
+      for(int i=0;i<numCourses;i++){
         if(indegree[i]==0){
-          bfs.add(i);
+          bfs.offer(i);
         }
       }
       int takenCourses=0;
@@ -58,7 +61,7 @@ class Solution {
         
         //Go through all the elm in the adj list and reduce the incourse
         
-        for(int i:prerequisite.get(e)){
+        for(int i:lst.get(e)){
           indegree[i]--;
           if(indegree[i]==0){
             bfs.offer(i);
@@ -82,27 +85,13 @@ public class Main{
 
 
     public static void main(String [] args) {
-            Main m1 =new Main();
-            CustomSet<Integer> s=new CustomSet<>();
-            insertObject(s);
-            System.out.println(s.getCount());
-        
+            Solution s=new Solution();
+            System.out.println(s.canFinish(2,new int[][]{{1,0},{0,1}}));
+                  
    
     }
 
-    
-
-     public static void insertObject(Set<Integer> set){
-        set.add(100);
-        set.add(300);
-        set.add(200);
-        set.add(100);
-        set.add(100);
-        set.add(300);
-        set.add(400);
-     }
- 
-
+   
 
 }
 
