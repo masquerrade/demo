@@ -83,6 +83,23 @@ class Solution {
     }
 }
 
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+      
+      //I need to do by DFS way
+      //In DFS I will create adjacency list
+      //Then iterate through the courses and call dfs on that
+      
+      //Mark the current node being processed as visiting
+      
+      //The  go through it's afjacency list and detect cycle on that
+      
+      //After processing mark the current node as visited
+      
+      
+        
+    }
+}
 
 public class Main{
 
